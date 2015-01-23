@@ -32,7 +32,7 @@ subject_test <- read.table("/Users/MC/dataset/test/subject_test.txt")
 
 names(X_test) = features
 
-# Extract only the measurements on the mean and standard deviation for each measurement.
+# Extract only the measurements on the mean and standard deviation for each measurement
 X_test = X_test[,extract_features]
 
 # Load activity labels
@@ -51,7 +51,7 @@ subject_train <- read.table("/Users/MC/dataset/train/subject_train.txt")
 
 names(X_train) = features
 
-# Extract only the measurements on the mean and standard deviation for each measurement.
+# Extract only the measurements on the mean and standard deviation for each measurement
 X_train = X_train[,extract_features]
 
 # Load activity data
@@ -62,18 +62,18 @@ names(subject_train) = "subject"
 # Bind data
 train_data <- cbind(as.data.table(subject_train), y_train, X_train)
 
-# Merge test and train data
+# Merge test and train the data
 data = rbind(test_data, train_data)
 
 id_labels   = c("subject", "Activity_ID", "Activity_Label")
 data_labels = setdiff(colnames(data), id_labels)
 melt_data      = melt(data, id = id_labels, measure.vars = data_labels)
 
-# Apply mean function to the dataset
+# Apply the mean function to the dataset
 tidy_data   = dcast(melt_data, subject + Activity_Label ~ variable, mean)
 
-# Write tidy_data.txt
+# Write the tidy dataset
 write.table(tidy_data, file = "/Users/MC/dataset/tidy_data.txt")
 
-# Write codebook.txt
+# Write the codebook
 write(names(tidy_data), file = "/Users/MC/dataset/codebook.txt", ncolumns = 1)
