@@ -75,5 +75,5 @@ tidy_data   = dcast(melt_data, subject + Activity_Label ~ variable, mean)
 # Write tidy_data.txt
 write.table(tidy_data, file = "/Users/MC/dataset/tidy_data.txt")
 
-# CodeBook
+# Write codebook.txt
 write(names(tidy_data), file = "/Users/MC/dataset/codebook.txt", ncolumns = 1)
